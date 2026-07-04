@@ -1,0 +1,34 @@
+/* Datos de ejemplo con los que se inicializa la cuenta de cada usuario nuevo
+   (misma semilla que usaba el frontend con localStorage). */
+
+export const SEED_CONTRATOS = [
+  { id: "ct-interna",    nombre: "Empresa Interna (Planta)", tipo: "Contrato indefinido",    color: "#6366f1", sueldoBase: 720000, factorExtra: 1.5, jornadaSemanal: 44, turnoDefecto: "Mañana",   descripcion: "Personal de planta con contrato directo e indefinido." },
+  { id: "ct-manpower",   nombre: "Manpower",                 tipo: "Suministro de personal",  color: "#0ea5e9", sueldoBase: 560000, factorExtra: 1.5, jornadaSemanal: 45, turnoDefecto: "Rotativo", descripcion: "Trabajadores suministrados por la EST Manpower (transitorios)." },
+  { id: "ct-sos",        nombre: "SOS Seguridad (Externa)",  tipo: "Servicio externalizado",  color: "#f59e0b", sueldoBase: 640000, factorExtra: 1.6, jornadaSemanal: 45, turnoDefecto: "Noche",    descripcion: "Guardias y vigilancia provistos por empresa de seguridad SOS." },
+  { id: "ct-honorarios", nombre: "Honorarios",               tipo: "Prestación de servicios", color: "#14b8a6", sueldoBase: 800000, factorExtra: 1.0, jornadaSemanal: 30, turnoDefecto: "Flexible", descripcion: "Profesionales a honorarios por proyecto o asesoría puntual." }
+];
+
+/* Construye el horario semanal desde una spec compacta: días no listados = libres */
+function H(spec) {
+  const h = {};
+  for (let d = 1; d <= 7; d++) {
+    const s = spec[d];
+    h[d] = s ? { on: true, in: s[0], out: s[1] } : { on: false, in: "", out: "" };
+  }
+  return h;
+}
+
+export const SEED_TRABAJADORES = [
+  { id: "t1",  nombre: "María González",   rut: "18.452.114-2", cargo: "Jefa de Turno",         rol: "Supervisor",    contratoId: "ct-interna",    turno: "Mañana",   estado: "Activo",     color: "#6366f1", ingreso: "2021-03-15", sueldoBase: 920000,  valorHoraExtra: 7700, horasExtrasMes: 6,  horario: H({1:["08:00","17:00"],2:["08:00","17:00"],3:["08:00","17:00"],4:["08:00","17:00"],5:["08:00","16:00"]}), asistencia: {} },
+  { id: "t2",  nombre: "Pedro Soto",       rut: "16.998.220-7", cargo: "Cajero",                rol: "Empleado",      contratoId: "ct-interna",    turno: "Tarde",    estado: "Activo",     color: "#10b981", ingreso: "2022-07-01", sueldoBase: 620000,  valorHoraExtra: 5200, horasExtrasMes: 10, horario: H({1:["14:00","22:00"],2:["14:00","22:00"],3:["14:00","22:00"],4:["14:00","22:00"],5:["14:00","22:00"],6:["10:00","18:00"]}), asistencia: { "2026-06-04":"falta", "2026-06-11":"falta" } },
+  { id: "t3",  nombre: "Camila Rojas",     rut: "20.115.667-K", cargo: "Vendedora",             rol: "Empleado",      contratoId: "ct-manpower",   turno: "Rotativo", estado: "Activo",     color: "#f59e0b", ingreso: "2023-11-20", sueldoBase: 560000,  valorHoraExtra: 4700, horasExtrasMes: 4,  horario: H({2:["09:00","18:00"],3:["09:00","18:00"],4:["09:00","18:00"],5:["09:00","18:00"],6:["09:00","18:00"]}), asistencia: {} },
+  { id: "t4",  nombre: "Jorge Muñoz",      rut: "15.330.881-1", cargo: "Guardia de Seguridad",  rol: "Empleado",      contratoId: "ct-sos",        turno: "Noche",    estado: "Activo",     color: "#f43f5e", ingreso: "2020-01-10", sueldoBase: 640000,  valorHoraExtra: 5700, horasExtrasMes: 18, horario: H({1:["22:00","06:00"],2:["22:00","06:00"],3:["22:00","06:00"],4:["22:00","06:00"],5:["22:00","06:00"],6:["22:00","06:00"]}), asistencia: { "2026-06-09":"falta" } },
+  { id: "t5",  nombre: "Antonia Vega",     rut: "19.774.503-5", cargo: "Recepcionista",         rol: "Empleado",      contratoId: "ct-manpower",   turno: "Mañana",   estado: "Vacaciones", color: "#8b5cf6", ingreso: "2023-02-28", sueldoBase: 540000,  valorHoraExtra: 4500, horasExtrasMes: 0,  horario: H({1:["08:30","16:30"],2:["08:30","16:30"],3:["08:30","16:30"],4:["08:30","16:30"],5:["08:30","16:30"]}), asistencia: {} },
+  { id: "t6",  nombre: "Diego Fuentes",    rut: "17.221.940-9", cargo: "Bodeguero",             rol: "Empleado",      contratoId: "ct-interna",    turno: "Mañana",   estado: "Activo",     color: "#0ea5e9", ingreso: "2021-09-05", sueldoBase: 650000,  valorHoraExtra: 5400, horasExtrasMes: 8,  horario: H({1:["07:00","16:00"],2:["07:00","16:00"],3:["07:00","16:00"],4:["07:00","16:00"],5:["07:00","16:00"]}), asistencia: {} },
+  { id: "t7",  nombre: "Valentina Díaz",   rut: "21.009.117-3", cargo: "Supervisora de Sala",   rol: "Supervisor",    contratoId: "ct-interna",    turno: "Tarde",    estado: "Activo",     color: "#14b8a6", ingreso: "2019-06-12", sueldoBase: 880000,  valorHoraExtra: 7300, horasExtrasMes: 5,  horario: H({3:["13:00","22:00"],4:["13:00","22:00"],5:["13:00","22:00"],6:["13:00","22:00"],7:["13:00","21:00"]}), asistencia: {} },
+  { id: "t8",  nombre: "Felipe Araya",     rut: "14.880.302-6", cargo: "Guardia de Seguridad",  rol: "Empleado",      contratoId: "ct-sos",        turno: "Noche",    estado: "Activo",     color: "#ef4444", ingreso: "2022-04-18", sueldoBase: 640000,  valorHoraExtra: 5700, horasExtrasMes: 14, horario: H({1:["22:00","06:00"],2:["22:00","06:00"],3:["22:00","06:00"],4:["22:00","06:00"],7:["22:00","06:00"]}), asistencia: { "2026-06-02":"falta", "2026-06-23":"falta" } },
+  { id: "t9",  nombre: "Javiera Pinto",    rut: "20.553.781-0", cargo: "Vendedora",             rol: "Empleado",      contratoId: "ct-manpower",   turno: "Rotativo", estado: "Inactivo",   color: "#a855f7", ingreso: "2024-01-08", sueldoBase: 560000,  valorHoraExtra: 4700, horasExtrasMes: 2,  horario: H({4:["10:00","19:00"],5:["10:00","19:00"],6:["10:00","19:00"],7:["10:00","19:00"]}), asistencia: { "2026-06-05":"falta", "2026-06-12":"falta", "2026-06-13":"falta" } },
+  { id: "t10", nombre: "Ignacio Torres",   rut: "13.445.776-8", cargo: "Gerente de Operaciones",rol: "Administrador", contratoId: "ct-interna",    turno: "Mañana",   estado: "Activo",     color: "#4f46e5", ingreso: "2018-02-01", sueldoBase: 1850000, valorHoraExtra: 0,    horasExtrasMes: 0,  horario: H({1:["09:00","18:00"],2:["09:00","18:00"],3:["09:00","18:00"],4:["09:00","18:00"],5:["09:00","18:00"]}), asistencia: {} },
+  { id: "t11", nombre: "Constanza Lara",   rut: "19.221.005-4", cargo: "Analista de RR.HH.",    rol: "Administrador", contratoId: "ct-honorarios", turno: "Flexible", estado: "Activo",     color: "#0d9488", ingreso: "2023-08-14", sueldoBase: 950000,  valorHoraExtra: 0,    horasExtrasMes: 0,  horario: H({1:["10:00","16:00"],3:["10:00","16:00"],5:["10:00","16:00"]}), asistencia: {} },
+  { id: "t12", nombre: "Sebastián Reyes",  rut: "16.120.998-2", cargo: "Personal de Aseo",      rol: "Empleado",      contratoId: "ct-sos",        turno: "Mañana",   estado: "Activo",     color: "#f97316", ingreso: "2022-10-30", sueldoBase: 530000,  valorHoraExtra: 4700, horasExtrasMes: 9,  horario: H({1:["06:00","14:00"],2:["06:00","14:00"],3:["06:00","14:00"],4:["06:00","14:00"],5:["06:00","14:00"],6:["06:00","14:00"]}), asistencia: { "2026-06-16":"falta" } }
+];

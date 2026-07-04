@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plantel · Gestión de Personal</title>
+  <meta name="description" content="Plataforma de administración de personal: horarios, roles, asistencia, horas extras, contratos y nómina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%236366f1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+    <span class="orb o4"></span><span class="orb o5"></span><span class="orb o6"></span>
+    <span class="orb o7"></span>
+  </div>
+  <div class="app" id="app">
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand__mark">P</div>
+        <div class="brand__text">
+          <span class="brand__name">Plantel</span>
+          <span class="brand__sub">Gestión de Personal</span>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <span class="nav__label">Operación</span>
+        <button class="nav__item is-active" data-view="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/></svg>
+          <span>Panel</span>
+        </button>
+        <button class="nav__item" data-view="trabajadores">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3Zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13Zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5Z"/></svg>
+          <span>Trabajadores</span>
+        </button>
+        <button class="nav__item" data-view="horarios">
+          <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 16H5V10h14v10Zm0-12H5V6h14v2Z"/></svg>
+          <span>Horarios</span>
+        </button>
+        <button class="nav__item" data-view="asistencia">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17Z"/></svg>
+          <span>Asistencia</span>
+        </button>
+
+        <span class="nav__label">Administración</span>
+        <button class="nav__item" data-view="nomina">
+          <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4Z"/></svg>
+          <span>Nómina</span>
+        </button>
+        <button class="nav__item" data-view="contratos">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6Zm2 16H8v-2h8v2Zm0-4H8v-2h8v2Zm-3-5V3.5L18.5 9H13Z"/></svg>
+          <span>Contratos</span>
+        </button>
+        <button class="nav__item" data-view="reportes">
+          <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5V9.2ZM10.6 5h2.8v14h-2.8V5Zm5.6 8H19v6h-2.8v-6Z"/></svg>
+          <span>Reportes</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__foot">
+        <div class="user-mini">
+          <div class="user-mini__av" id="userAv">CC</div>
+          <div class="user-mini__txt">
+            <strong id="userName">Cristóbal C.</strong>
+            <span>Administrador</span>
+          </div>
+          <button class="logout-btn" id="logoutBtn" title="Cerrar sesión" aria-label="Cerrar sesión">
+            <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4z"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+    <!-- ====== MAIN ====== -->
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn topbar__menu" id="menuBtn" aria-label="Menú">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2Zm0-5h18v-2H3v2Zm0-7v2h18V6H3Z"/></svg>
+        </button>
+        <button class="claude-btn" id="importBtn" title="Importar trabajadores desde Excel">
+          <svg class="claude-ic" viewBox="0 0 100 100" aria-hidden="true">
+            <g stroke="#D97757" stroke-width="8.5" stroke-linecap="round">
+              <line x1="50" y1="36" x2="50" y2="7"/>
+              <line x1="57" y1="37.9" x2="72" y2="11.9"/>
+              <line x1="62.1" y1="43" x2="88.1" y2="28"/>
+              <line x1="64" y1="50" x2="93" y2="50"/>
+              <line x1="62.1" y1="57" x2="88.1" y2="72"/>
+              <line x1="57" y1="62.1" x2="72" y2="88.1"/>
+              <line x1="50" y1="64" x2="50" y2="93"/>
+              <line x1="43" y1="62.1" x2="28" y2="88.1"/>
+              <line x1="37.9" y1="57" x2="11.9" y2="72"/>
+              <line x1="36" y1="50" x2="7" y2="50"/>
+              <line x1="37.9" y1="43" x2="11.9" y2="28"/>
+              <line x1="43" y1="37.9" x2="28" y2="11.9"/>
+            </g>
+          </svg>
+          <span>Asistente Excel</span>
+        </button>
+        <div class="topbar__title">
+          <h1 id="viewTitle">Panel</h1>
+          <p id="viewSubtitle">Resumen general de tu empresa</p>
+        </div>
+        <div class="topbar__actions">
+          <div class="search">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"/></svg>
+            <input type="text" id="globalSearch" placeholder="Buscar trabajador, cargo…" />
+          </div>
+          <button class="icon-btn" id="themeBtn" title="Cambiar tema">
+            <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5Zm-8 6H2v-2h2v2Zm18 0h-2v-2h2v2ZM11 2v2h2V2h-2Zm0 18v2h2v-2h-2ZM5.99 4.58 4.58 5.99 6 7.41 7.41 6 5.99 4.58Zm12.02 0L16.59 6 18 7.41 19.42 5.99 18.01 4.58ZM18 18.01 16.59 16.6 18 18.01l1.42 1.41 1.41-1.41L18 18.01ZM6 16.59 4.58 18.01 5.99 19.42 7.41 18 6 16.59Z"/></svg>
+          </button>
+          <button class="btn btn--primary" id="quickAddBtn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg>
+            <span>Nuevo trabajador</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content" id="content"><!-- vistas inyectadas por JS --></main>
+    </div>
+  </div>
+
+  <!-- ====== AUTENTICACIÓN ====== -->
+  <div class="auth" id="authScreen">
+    <div class="auth-orbs" aria-hidden="true">
+      <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+      <span class="orb o4"></span><span class="orb o5"></span><span class="orb o6"></span>
+    </div>
+    <div class="auth-stage">
+      <div class="auth-brand">
+        <div class="brand__mark">P</div>
+        <div>
+          <div class="auth-brand__name">Plantel</div>
+          <div class="auth-brand__sub">Gestión de Personal</div>
+        </div>
+      </div>
+
+      <div class="auth-container" id="authContainer">
+        <!-- Registro -->
+        <div class="auth-form auth-form--signup">
+          <form id="signupForm" autocomplete="on">
+            <h2>Crear cuenta</h2>
+            <p class="auth-sub">Regístrate para comenzar</p>
+            <label class="auth-field">
+              <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5Z"/></svg>
+              <input name="nombre" placeholder="Nombre completo" autocomplete="name" required>
+            </label>
+            <label class="auth-field">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>
+              <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
+            </label>
+            <label class="auth-field">
+              <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2Zm-6 9a2 2 0 1 1 2-2 2 2 0 0 1-2 2Zm3-9H9V6a3 3 0 0 1 6 0Z"/></svg>
+              <input type="password" name="pass" placeholder="Contraseña" autocomplete="new-password" required>
+            </label>
+            <button class="auth-btn" type="submit">Registrarse</button>
+            <p class="auth-switch">¿Ya tienes cuenta? <a id="toSigninM">Inicia sesión</a></p>
+          </form>
+        </div>
+
+        <!-- Iniciar sesión -->
+        <div class="auth-form auth-form--signin">
+          <form id="signinForm" autocomplete="on">
+            <h2>Iniciar sesión</h2>
+            <p class="auth-sub">Accede a tu cuenta</p>
+            <label class="auth-field">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>
+              <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" value="admin@plantel.cl" required>
+            </label>
+            <label class="auth-field">
+              <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2Zm-6 9a2 2 0 1 1 2-2 2 2 0 0 1-2 2Zm3-9H9V6a3 3 0 0 1 6 0Z"/></svg>
+              <input type="password" name="pass" placeholder="Contraseña" autocomplete="current-password" value="1234" required>
+            </label>
+            <button class="auth-btn" type="submit">Entrar</button>
+            <p class="auth-hint">Demo: admin@plantel.cl · 1234</p>
+            <p class="auth-switch">¿No tienes cuenta? <a id="toSignupM">Regístrate</a></p>
+          </form>
+        </div>
+
+        <!-- Panel deslizante -->
+        <div class="auth-overlay-c">
+          <div class="auth-overlay">
+            <div class="auth-overlay-panel auth-overlay--left">
+              <h2>¡Hola de nuevo!</h2>
+              <p>Si ya tienes una cuenta, inicia sesión para seguir gestionando tu personal.</p>
+              <button class="auth-ghost" id="toSignin" type="button">Iniciar sesión</button>
+            </div>
+            <div class="auth-overlay-panel auth-overlay--right">
+              <h2>¡Bienvenido!</h2>
+              <p>¿Aún no tienes cuenta? Regístrate y comienza a administrar tu equipo en minutos.</p>
+              <button class="auth-ghost" id="toSignup" type="button">Registrarse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MODAL ====== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true">
+      <header class="modal__head">
+        <h3 id="modalTitle">Título</h3>
+        <button class="icon-btn" data-close aria-label="Cerrar">
+          <svg viewBox="0 0 24 24"><path d="m19 6.41-1.41-1.42L12 10.59 6.41 4.99 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </header>
+      <div class="modal__body" id="modalBody"></div>
+      <footer class="modal__foot" id="modalFoot"></footer>
+    </div>
+  </div>
+
+  <!-- ====== TOAST ====== -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="js/vendor/xlsx.full.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

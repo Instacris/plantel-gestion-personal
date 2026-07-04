@@ -1,0 +1,16 @@
+{
+  "name": "plantel-gestion-personal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plantel · Gestión de Personal — frontend estático + API serverless con Neon Postgres",
+  "scripts": {
+    "dev": "node --env-file=.env scripts/dev-server.mjs",
+    "db:setup": "node --env-file=.env scripts/setup-db.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
