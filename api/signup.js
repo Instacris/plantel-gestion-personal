@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const email = String(body.email || "").trim().toLowerCase().slice(0, 120);
     const pass = String(body.pass || "");
     if (!nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return send(res, 400, { error: "Completa nombre y un correo válido" });
-    if (pass.length < 4) return send(res, 400, { error: "La contraseña debe tener al menos 4 caracteres" });
+    if (pass.length < 8) return send(res, 400, { error: "La contraseña debe tener al menos 8 caracteres" });
 
     const hash = await bcrypt.hash(pass, 10);
     let rows;
