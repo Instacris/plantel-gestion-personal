@@ -356,7 +356,7 @@ function renderHorarios() {
             <div class="sched-cell sched-name"><div class="avatar" style="background:${t.color};width:32px;height:32px;font-size:12px">${initials(t.nombre)}</div>
               <div class="cell-person__txt"><strong>${t.nombre}</strong><span>${t.cargo}</span></div></div>
             ${DIAS_SEMANA.map((_, i) => { const hd = t.horario[i + 1]; return hd?.on
-              ? `<div class="sched-cell"><div class="shift" style="background:${s.bg};color:${s.fg};border-left-color:${s.bd}">${t.turno}<small>${hd.in}–${hd.out}</small></div></div>`
+              ? `<div class="sched-cell"><div class="shift" style="background:${s.bg};color:${s.fg};border-color:${s.bd}">${t.turno}<small>${hd.in}-${hd.out}</small></div></div>`
               : `<div class="sched-cell"><div class="shift shift--off">Libre</div></div>`; }).join("")}
           </div>`;
         }).join("")}
@@ -615,7 +615,7 @@ function openContractModal(id) {
   const editing = !!id;
   const c = editing ? { ...state.contratos.find((x) => x.id === id) }
     : { id: "ct-" + Date.now(), nombre: "", tipo: "Suministro de personal", color: pickColor(), sueldoBase: 600000, factorExtra: 1.5, jornadaSemanal: 45, turnoDefecto: "Mañana", descripcion: "" };
-  const palette = ["#6366f1", "#0ea5e9", "#f59e0b", "#14b8a6", "#f43f5e", "#8b5cf6", "#10b981", "#ec4899"];
+  const palette = ["#e05a1e", "#0ea5e9", "#f59e0b", "#14b8a6", "#f43f5e", "#8b5cf6", "#10b981", "#ec4899"];
   const body = `
     <form id="contractForm" class="form-grid">
       <div class="field col-2"><label>Nombre del contrato / empresa</label><input name="nombre" value="${c.nombre}" placeholder="Ej: Manpower, SOS Externa…" required></div>
@@ -906,7 +906,7 @@ function confirmModal(title, msg, onYes, danger = true) {
 
 /* ---------- Utilidades varias ---------- */
 function pickColor() {
-  const p = ["#6366f1", "#0ea5e9", "#f59e0b", "#14b8a6", "#f43f5e", "#8b5cf6", "#10b981", "#ec4899", "#a855f7", "#0d9488"];
+  const p = ["#e05a1e", "#0ea5e9", "#f59e0b", "#14b8a6", "#f43f5e", "#8b5cf6", "#10b981", "#ec4899", "#b45309", "#0d9488"];
   return p[Math.floor(Math.random() * p.length)];
 }
 function exportCSV() {
